@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<!-- content must go before menu because of z-order -->
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+<!-- menu -->
+    <ListView
+        android:id="@+id/drawerListView"
+        android:layout_gravity="start"
+        android:choiceMode="singleChoice"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:background="?android:attr/windowBackground" />
+</android.support.v4.widget.DrawerLayout>
