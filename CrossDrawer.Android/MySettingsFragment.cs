@@ -1,10 +1,15 @@
 ﻿using Android.OS;
+using Android.Runtime;
 using Android.Views;
-using Fragment = Android.Support.V4.App.Fragment;
+using CrossDrawer.Core;
+using MvvmCross.Droid.Support.V7.Fragging.Attributes;
+using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 
 namespace CrossDrawer.Android
 {
-	public class MySettingsFragment : Fragment
+	[MvxFragmentAttribute(typeof(MainViewModel), Resource.Id.frameLayout)]
+	[Register("crossdrawer.android.MySettingsFragment")]
+	public class MySettingsFragment : MvxFragment<MySettingsViewModel>
 	{
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{

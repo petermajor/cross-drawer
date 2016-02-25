@@ -1,30 +1,30 @@
-﻿using Android.App;
+﻿using System.Linq;
+using Android.App;
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using CrossDrawer.Core;
+using MvvmCross.Droid.Support.V7.AppCompat;
 using Fragment = Android.Support.V4.App.Fragment;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace CrossDrawer.Android
 {
-	[Activity (MainLauncher = true)]
-	public class MainActivity : AppCompatActivity
+	[Activity]
+	public class MainActivity : MvxCachingFragmentCompatActivity<MainViewModel>
 	{
-		Fragment[] _fragments = { new MyListFragment(), new MySettingsFragment() };
-
-		string[] _titles = { "My List", "My Settings" };
-
 		ActionBarDrawerToggle _drawerToggle;
 
 		ListView _drawerListView;
 
 		DrawerLayout _drawerLayout;
 
-		protected override void OnCreate (Bundle savedInstanceState)
+		protected override void OnCreate (Bundle bundle)
 		{
-			base.OnCreate (savedInstanceState);
+			base.OnCreate (bundle);
 
 			SetContentView (Resource.Layout.Main);
 
@@ -35,7 +35,7 @@ namespace CrossDrawer.Android
 
 			_drawerListView = FindViewById<ListView> (Resource.Id.drawerListView);
 			_drawerListView.ItemClick += (s, e) => ShowFragmentAt (e.Position);
-			_drawerListView.Adapter = new ArrayAdapter<string> (this, global::Android.Resource.Layout.SimpleListItem1, _titles);
+			_drawerListView.Adapter = new ArrayAdapter<string> (this, global::Android.Resource.Layout.SimpleListItem1, ViewModel.MenuItems.ToArray());
 
 			_drawerLayout = FindViewById<DrawerLayout> (Resource.Id.drawerLayout);
 
@@ -48,9 +48,9 @@ namespace CrossDrawer.Android
 
 		void ShowFragmentAt (int position)
 		{
-			SupportFragmentManager.BeginTransaction ().Replace (Resource.Id.frameLayout, _fragments [position]).Commit ();
+			ViewModel.NavigateTo (position);
 
-			Title = _titles [position];
+			Title = ViewModel.MenuItems.ElementAt (position);
 
 			_drawerLayout.CloseDrawer (_drawerListView);
 		}
