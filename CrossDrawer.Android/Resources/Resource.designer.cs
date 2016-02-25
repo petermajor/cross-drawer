@@ -1708,6 +1708,9 @@ namespace CrossDrawer.Android
 			// aapt resource value: 0x7f0c002f
 			public const int title_template = 2131492911;
 			
+			// aapt resource value: 0x7f0c0060
+			public const int toolbar = 2131492960;
+			
 			// aapt resource value: 0x7f0c002e
 			public const int topPanel = 2131492910;
 			
@@ -1883,6 +1886,9 @@ namespace CrossDrawer.Android
 			
 			// aapt resource value: 0x7f040027
 			public const int support_simple_spinner_dropdown_item = 2130968615;
+			
+			// aapt resource value: 0x7f040028
+			public const int Toolbar = 2130968616;
 			
 			static Layout()
 			{

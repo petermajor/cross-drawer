@@ -2,6 +2,7 @@
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
+using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using Fragment = Android.Support.V4.App.Fragment;
@@ -26,6 +27,9 @@ namespace CrossDrawer.Android
 			base.OnCreate (savedInstanceState);
 
 			SetContentView (Resource.Layout.Main);
+
+			var toolbar = FindViewById<Toolbar> (Resource.Id.toolbar);
+			SetSupportActionBar (toolbar);
 
 			SupportActionBar.SetDisplayHomeAsUpEnabled (true);
 
